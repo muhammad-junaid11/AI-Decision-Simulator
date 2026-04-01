@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@layer components {
+  .btn-primary {
+    @apply px-10 py-4 bg-slate-900 text-white rounded-[2rem] font-bold shadow-xl 
+           transition-all hover:scale-[1.02] hover:bg-black active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply flex items-center gap-2 px-4 py-2 rounded-xl text-slate-500 font-medium 
+           transition-all hover:bg-slate-100 active:scale-95;
+  }
+
+  /* For input fields to feel premium */
+  .input-field {
+    @apply w-full p-4 mb-1 border-2 border-slate-100 rounded-2xl outline-none 
+           transition-all focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50/50;
+  }
+}

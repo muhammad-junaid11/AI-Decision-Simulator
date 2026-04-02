@@ -10,7 +10,6 @@ const AiDecisionSimulator = ({ onBack }: { onBack: () => void }) => {
   const [loading, setLoading] = useState(false);
   const [showResult, setShowResult] = useState(false);
 
-  // Calculate a fake progress based on history length (max 5 questions)
   const progress = Math.min((history.length / 5) * 100, 100);
 
   const start = async () => {

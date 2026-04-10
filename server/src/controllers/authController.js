@@ -6,6 +6,10 @@ const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET || "secret", { expiresIn: "30d" });
 };
 
+const generateRefreshToken = (id) => {
+  return jwt.sign({ id }, process.env.REFRESH_TOKEN_SECRET || "refreshsecret", { expiresIn: "7d" });
+};
+
 // Register user
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -19,6 +23,7 @@ export const registerUser = async (req, res) => {
       name: user.name,
       email: user.email,
       token: generateToken(user._id.toString()),
+      refreshToken: generateRefreshToken(user._id.toString())
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -36,6 +41,7 @@ export const loginUser = async (req, res) => {
         name: user.name,
         email: user.email,
         token: generateToken(user._id.toString()),
+        refreshToken: generateRefreshToken(user._id.toString())
       });
     } else {
       res.status(401).json({ message: "Invalid email or password" });
@@ -61,5 +67,22 @@ export const getMe = async (req, res) => {
     res.json(user);
   } catch (err) {
     res.status(401).json({ message: "Token invalid or expired" });
+  }
+};
+
+
+export const refreshToken = async (req, res) => {
+  const { token } = req.body; // the refresh token
+  if (!token) return res.status(401).json({ message: "No refresh token provided" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET || "refreshsecret");
+    const user = await User.findById(decoded.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const newAccessToken = generateToken(user._id.toString());
+    res.json({ token: newAccessToken });
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid refresh token" });
   }
 };

@@ -25,7 +25,7 @@ const App: React.FC = () => {
 />
 
 <Route
-  path="/dashboard/aisimulator"
+  path="/dashboard/ai"
   element={
     <ProtectedRoute>
       <Dashboard />

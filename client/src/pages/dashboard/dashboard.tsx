@@ -2,8 +2,8 @@ import { useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import AiDecisionSimulator from "../AiDecisionSimulator";
-import DebateSimulator from "../Debate";
+import AiDecisionSimulator from "../AIDecisionSimulator/AiDecisionSimulator";
+import DebateSimulator from "../Debate/Debate";
 import Navbar from "../../components/Layout/Navbar";
 
 import {
@@ -22,7 +22,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isAI = location.pathname === "/dashboard/aisimulator";
+  const isAI = location.pathname === "/dashboard/ai";
   const isDebate = location.pathname === "/dashboard/debate";
 
   useEffect(() => {

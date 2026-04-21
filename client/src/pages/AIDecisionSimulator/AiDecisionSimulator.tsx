@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { api } from "../services/api";
-import QuestionCard from "../components/UI/QuestionCard";
-import ResultModal from "../components/UI/ResultModal";
+import { api } from "../../services/api";
+import QuestionCard from "../../components/UI/QuestionCard";
+import ResultModal from "../../components/UI/ResultModal";
 
 const AiDecisionSimulator = ({ onBack }: { onBack: () => void }) => {
   const [history, setHistory] = useState<any[]>([]);

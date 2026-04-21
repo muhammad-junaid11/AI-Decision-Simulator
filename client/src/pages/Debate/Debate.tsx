@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ResultModal from "../components/UI/ResultModal";
+import ResultModal from "../../components/UI/ResultModal";
 
 type DebateResponse = {
   agent: string;
